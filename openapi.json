@@ -1,0 +1,20 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Mailgun API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.mailgun.net/v3/{domain}",
+            "description": "Mailgun server",
+            "variables": {
+                "domain": {
+                    "default": "YOUR_DOMAIN_NAME"
+                }
+            }
+        }
+    ],
+    "paths": {
+    }
+}
