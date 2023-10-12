@@ -6,15 +6,515 @@
     },
     "servers": [
         {
-            "url": "https://api.mailgun.net/v3/{domain}",
-            "description": "Mailgun server",
-            "variables": {
-                "domain": {
-                    "default": "YOUR_DOMAIN_NAME"
-                }
-            }
+            "url": "https://api.mailgun.net",
+            "description": "Mailgun server"
         }
     ],
     "paths": {
+        "/v3/{domain}/messages": {
+            "post": {
+                "summary": "Send a message"
+            }
+        },
+        "/v3/{domain}/messages.mime": {
+            "post": {
+                "summary": "Send a MIME message"
+            }
+        },
+        "/v3/domains": {
+            "get": {
+                "summary": "Get a list of domains"
+            },
+            "post": {
+                "summary": "Add a new domain"
+            }
+        },
+        "/v3/domains/{domain}": {
+            "get": {
+                "summary": "Get domain information"
+            },
+            "put": {
+                "summary": "Update a domain"
+            },
+            "delete": {
+                "summary": "Delete a domain"
+            }
+        },
+        "/v3/domains/{domain}/verify": {
+            "put": {
+                "summary": "Verify a domain"
+            }
+        },
+        "/v3/domains/{domain}/credentials": {
+            "post": {
+                "summary": "Create a new credential"
+            }
+        },
+        "/v3/domains/{domain}/credentials/{login}": {
+            "put": {
+                "summary": "Update a credential"
+            },
+            "delete": {
+                "summary": "Delete a credential"
+            }
+        },
+        "/v3/domains/{domains}/connection": {
+            "get": {
+                "summary": "Get domain connection settings"
+            }
+        },
+        "/v3/domains/{domain}/connection": {
+            "put": {
+                "summary": "Update domain connection settings"
+            }
+        },
+        "/v3/domains/{domain}/tracking": {
+            "get": {
+                "summary": "Get domain tracking settings"
+            },
+            "put": {
+                "summary": "Update domain tracking settings"
+            }
+        },
+        "/v3/domains{domain}/tracking/click": {
+            "put": {
+                "summary": "Update domain click tracking settings"
+            }
+        },
+        "/v3/domains/{domain}/tracking/unsubscribe": {
+            "put": {
+                "summary": "Update domain unsubscribe tracking settings"
+            }
+        },
+        "/v3/domains/{domain}/dkim_authority": {
+            "put": {
+                "summary": "change the DKIM authority"
+            }
+        },
+        "/v3/domains/{domain}/dkim_selector": {
+            "put": {
+                "summary": "update the DKIM selector"
+            }
+        },
+        "/v3/domains/{domain}/web_prefix": {
+            "put": {
+                "summary": "update the CNAME"
+            }
+        },
+        "/v4/domains/{authority_name}/keys": {
+            "get": {
+                "summary": "Get a list of keys"
+            }
+        },
+        "/v4/domains/{authority_name}/keys/{selector}/activate": {
+            "put": {
+                "summary": "Activate a key"
+            }
+        },
+        "/v4/domains/{authority_name}/keys/{selector}/deactivate": {
+            "put": {
+                "summary": "Deactivate a key"
+            }
+        },
+        "/v1/dkim/keys": {
+            "post": {
+                "summary": "create a domain key"
+            },
+            "get": {
+                "summary": "list domain keys"
+            },
+            "delete": {
+                "summary": "delete a domain key"
+            }
+        },
+        "/v2/x509/{domain}": {
+            "post": {
+                "summary": "generate TLS certificate"
+            }
+        },
+        "/v2/x509/{domain}/status": {
+            "get": {
+                "summary": "get TLS certificate status"
+            }
+        },
+        "/v3/ips": {
+            "get": {
+                "summary": "get a list of IPs"
+            }
+        },
+        "/ips/{ip}": {
+            "get": {
+                "summary": "get IP information"
+            }
+        },
+        "/domains/{domain}/ips": {
+            "get": {
+                "summary": "get a list of IPs for a domain"
+            },
+            "post": {
+                "summary": "assign an IP to a domain"
+            },
+            "delete": {
+                "summary": "unassign an IP from a domain"
+            }
+        },
+        "/v1/ip_pools": {
+            "post": {
+                "summary": "create an IP pool"
+            }
+        },
+        "/v1/ip_pools/{pool_id}": {
+            "patch": {
+                "summary": "update an IP pool"
+            },
+            "delete": {
+                "summary": "delete an IP pool"
+            }
+        },
+        "/v3/domains/{domain_name}/ips": {
+            "post": {
+                "summary": "link an IP pool to a domain"
+            }
+        },
+        "/v3/domains/{domain_name}/ips/ip_pool": {
+            "delete": {
+                "summary": "unlink an IP pool from a domain"
+            }
+        },
+        "/v3/{domain}/events": {
+            "get": {
+                "summary": "get a page of events"
+            }
+        },
+        "/v3/{domain}/stats/total": {
+            "get": {
+                "summary": "get total stats for a domain"
+            }
+        },
+        "/{domain}/tags": {
+            "get": {
+                "summary": "get a list of tags"
+            }
+        },
+        "/{domain}/tags/{tag}": {
+            "get": {
+                "summary": "get given tag information"
+            },
+            "put": {
+                "summary": "update a tag"
+            },
+            "delete": {
+                "summary": "delete a tag"
+            }
+        },
+        "/{domain}/tags/{tag}/stats": {
+            "get": {
+                "summary": "get stats for a tag"
+            }
+        },
+        "/{domain}/tags/{tag}/stats/aggregate/countries": {
+            "get": {
+                "summary": "get stats for a tag by country"
+            }
+        },
+        "/{domain}/tags/{tag}/stats/aggregate/providers": {
+            "get": {
+                "summary": "get stats for a tag by provider"
+            }
+        },
+        "/{domain}/tags/{tag}/stats/aggregate/devices": {
+            "get": {
+                "summary": "get stats for a tag by devices"
+            }
+        },
+        "/{domain}/bounces": {
+            "get": {
+                "summary": "get a list of bounces"
+            },
+            "post": {
+                "summary": "add a bounce"
+            },
+            "delete": {
+                "summary": "delete all bounces"
+            }
+        },
+        "/{domain}/bounces/{address}": {
+            "get": {
+                "summary": "get a bounce"
+            },
+            "delete": {
+                "summary": "delete a bounce"
+            }
+        },
+        " /{domain}/bounces": {
+            "post": {
+                "summary": "add multiple bounces"
+            }
+        },
+        "/{domain}/bounces/import": {
+            "post": {
+                "summary": "import bounces"
+            }
+        },
+        "/v3/{domain}/unsubscribes": {
+            "get": {
+                "summary": "get a list of unsubscribes"
+            },
+            "post": {
+                "summary": "add an unsubscribe"
+            }
+        },
+        "/v3/{domain}/unsubscribes/{address}": {
+            "get": {
+                "summary": "get an unsubscribe"
+            },
+            "delete": {
+                "summary": "delete an unsubscribe"
+            }
+        },
+        "/{domain}/unsubscribes/import": {
+            "post": {
+                "summary": "get list of  unsubscribes"
+            }
+        },
+        "/{domain}/complaints": {
+            "get": {
+                "summary": "get a list of complaints"
+            },
+            "post": {
+                "summary": "add a complaint"
+            }
+        },
+        "/{domain}/complaints/{address}": {
+            "get": {
+                "summary": "get a single complaint"
+            },
+            "delete": {
+                "summary": "delete a complaint"
+            }
+        },
+        "/{domain}/complaints/import": {
+            "post": {
+                "summary": "import complaints"
+            }
+        },
+        "/{domain}/whitelists": {
+            "get": {
+                "summary": "get a list of whitelists"
+            },
+            "post": {
+                "summary": "add a domain or addres to the whitelist"
+            }
+        },
+        "/{domain}/whitelists/{address}": {
+            "get": {
+                "summary": "get a single whitelist record"
+            },
+            "delete": {
+                "summary": "delete a single whitelist record"
+            }
+        },
+        "/{domain}/whitelists/import": {
+            "post": {
+                "summary": "import addresses and or domains to the whitelist"
+            }
+        },
+        "/routes": {
+            "get": {
+                "summary": "get a list of routes"
+            },
+            "post": {
+                "summary": "create a route"
+            }
+        },
+        "/routes/{id}": {
+            "get": {
+                "summary": "get a single route"
+            },
+            "put": {
+                "summary": "update a route"
+            },
+            "delete": {
+                "summary": "delete a route"
+            }
+        },
+        "/v3/domains/{domain}/webhooks": {
+            "get": {
+                "summary": "get a list of webhooks"
+            },
+            "post": {
+                "summary": "create a webhook"
+            }
+        },
+        "/domains/{domain}/webhooks/{webhookname}": {
+            "get": {
+                "summary": "get specified details of webhooks"
+            },
+            "put": {
+                "summary": "update a webhook"
+            },
+            "delete": {
+                "summary": "delete a webhook"
+            }
+        },
+        "/lists/pages": {
+            "get": {
+                "summary": "get a list of mailing lists"
+            }
+        },
+        "/lists/{address}": {
+            "get": {
+                "summary": "get a mailing list"
+            },
+            "put": {
+                "summary": "update a mailing list"
+            },
+            "delete": {
+                "summary": "delete a mailing list"
+            }
+        },
+        "/lists": {
+            "post": {
+                "summary": "create a mailing list"
+            }
+        },
+        "lists/{address}/validate": {
+            "post": {
+                "summary": "verify all members of the mailing list"
+            },
+            "get": {
+                "summary": "retrieve the validation status of the mailing list"
+            },
+            "delete": {
+                "summary": "cancel the validation process"
+            }
+        },
+        "/lists/{address}/members/pages": {
+            "get": {
+                "summary": "get a list of mailing list members"
+            }
+        },
+        "/lists/{address}/members/{member_address}": {
+            "get": {
+                "summary": "get a mailing list member"
+            },
+            "put": {
+                "summary": "update a mailing list member"
+            },
+            "delete": {
+                "summary": "delete a mailing list member"
+            }
+        },
+        "/lists/{address}/members": {
+            "post": {
+                "summary": "add a mailing list member"
+            }
+        },
+        "/{domain}/templates": {
+            "post": {
+                "summary": "create a template"
+            },
+            "get": {
+                "summary": "get a list of templates"
+            },
+            "delete": {
+                "summary": "delete a template"
+            }
+        },
+        "/{domain}/templates/name": {
+            "get": {
+                "summary": "get a template"
+            },
+            "put": {
+                "summary": "update a template"
+            },
+            "delete": {
+                "summary": "delete a template"
+            }
+        },
+        "/{domain}/templates/{template}/versions": {
+            "post": {
+                "summary": "create a new template version"
+            },
+            "get": {
+                "summary": "get a list of template versions"
+            }
+        },
+        "/{domain}/templates/{name}/versions": {
+            "get": {
+                "summary": "get a list of template versions"
+            },
+            "put": {
+                "summary": "update a template version"
+            }
+        },
+        "/{domain}/templates/{template}/versions/{version}": {
+            "delete": {
+                "summary": "delete a template version"
+            }
+        },
+        "/v5/accounts/subaccounts": {
+            "get": {
+                "summary": "get a list of subaccounts"
+            },
+            "post": {
+                "summary": "create a subaccount"
+            }
+        },
+        "/v5/accounts/subaccounts/{id}": {
+            "get": {
+                "summary": "get a subaccount"
+            }
+        },
+        "/v5/accounts/s/{id}/disable": {
+            "post": {
+                "summary": "disable a subaccount"
+            }
+        },
+        "/v5/accounts/s/{id}/enable": {
+            "post": {
+                "summary": "enable a subaccount"
+            }
+        },
+        "/v4/address/validate": {
+            "get": {
+                "summary": "validate an email address"
+            },
+            "post": {
+                "summary": "validate an email address"
+            }
+        },
+        "/v4/address/validate/bulk": {
+            "get": {
+                "summary": "get list of all bulk validation jobs"
+            }
+        },
+        "/v4/address/validate/bulk/{list_id}": {
+            "post": {
+                "summary": "create a bulk validation job"
+            },
+            "get": {
+                "summary": "get current status of bulk validation job"
+            },
+            "delete": {
+                "summary": "cancel a bulk job"
+            }
+        },
+        "/v4/address/validate/previeuw": {
+            "get": {
+                "summary": "get a previeuw of the validation results"
+            }
+        },
+        "/v4/address/validate/previeuw/{list_id}": {
+            "get": {
+                "summary": "get a previeuw of the validation results"
+            },
+            "delete": {
+                "summary": "cancel a previeuw"
+            },
+            "put": {
+                "summary": "promote a previeuw to a job"
+            }
+        }
     }
 }
