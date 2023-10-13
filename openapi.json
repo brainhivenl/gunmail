@@ -808,7 +808,11 @@
           "200": {
             "description": "Successful response",
             "content": {
-              "application/json": {}
+              "application/json": {
+                "schema":{
+                    "$ref": "#/components/schemas/ConnectionUpdate"
+                }
+              }
             }
           }
         }
@@ -4472,6 +4476,25 @@
             }
           }
         }
+      },
+      "ConnectionUpdate":{
+       "type":"object",
+       "properties": {
+        "message":{
+          "type":"string"
+        },
+        "connection":{
+          "type":"object",
+          "properties":{
+            "require_tls":{
+              "type":"boolean"
+            },
+            "skip_verification":{
+              "type":"boolean"
+            }
+          }
+        }
+       }
       },
       "SuccessResponse": {
         "type": "object",
