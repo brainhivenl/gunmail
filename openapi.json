@@ -709,7 +709,11 @@
           "200": {
             "description": "Successful response",
             "content": {
-              "application/json": {}
+              "application/json": {
+                "schema":{
+                    "$ref": "#/components/schemas/DeleteCredentialsResponse"
+                }
+              }
             }
           }
         }
@@ -4435,6 +4439,17 @@
           "wildcard": {
             "type": "boolean",
             "description": "Indicates whether the domain is a wildcard domain."
+          }
+        }
+      },
+      "DeleteCredentialsResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "spec":{
+            "type":"string"
           }
         }
       },
