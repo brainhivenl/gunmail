@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Mailgun API",
-        "description": "Introduction\n=======\n\nThe Mailgun API is built on HTTP. Our API is RESTful and it:\n\n* Uses predictable, resource-oriented URLs.\n* Uses built-in HTTP capabilities for passing parameters and authentication.\n* Responds with standard HTTP response codes to indicate errors.\n* Returns JSON.\n\nMailgun has published [Libraries](https://documentation.mailgun.com/en/latest/libraries.html#libraries) for various languages. You may use our libraries, or your favorite HTTP/REST library available for your programming language, to make HTTP calls to Mailgun. Visit our Libraries page to see HTTP REST libraries we recommend.\n\nTo give you an idea of how to use the API, we have annotated our documentation with code samples written in several popular programming languages. Use the language selector at the top to switch between them.\n\nOur samples from [quickstart](https://documentation.mailgun.com/en/latest/quickstart.html), [User Manual](https://documentation.mailgun.com/en/latest/user_manual.html#user-manual), and [API Reference](https://documentation.mailgun.com/en/latest/api_reference.html#api-reference) provide examples that will function. You’re welcome to copy/paste and run the script to see the API in action.\n\n## Base URL\n\nAll API URLs referenced in this documentation start with the following base part:\n> https://api.mailgun.net/v3\n\nYour Mailgun account may contain several email domains. To avoid passing the domain name as a query parameter, most API URLs must include the name of the domain you’re interested in:\n> https://api.mailgun.net/v3/mydomain.com\n\n## Authentication\n\nWhen you sign up for an account, you are given an API key. You authenticate to the Mailgun API by providing your API key in the request. You can manage your API key in the “Security” tab under the Account section of the Control Panel.\n\nAuthentication to the API occurs via [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication). Use `api` as the user name and your API key is the password. Here is how you use basic HTTP auth with curl:\n> curl --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0'\n\nOr you can try the following API call right from your browser:\n> https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0@api.mailgun.net/v3/samples.mailgun.org/log\n\n**Warning:** Keep your API key secret!\n\n## Date Format\n\nMailgun returns JSON for all API calls. JSON does not have a built-in date type, dates are passed as strings encoded according to [RFC 2822#page-14](https://tools.ietf.org/html/rfc2822.html#page-14). This format is native to JavaScript and is also supported by most programming languages out of the box:\n\n> 'Thu, 13 Oct 2011 18:02:00 GMT'\n\n## Errors\n\n| Code               | Description                                               |\n|--------------------|-----------------------------------------------------------|\n| 200                | Everything worked as expected                             |\n| 400                | Bad Request - Often missing a required parameter          |\n| 401                | Unauthorized - No valid API key provided                  |\n| 402                | Request Failed - Parameters were valid but request failed |\n| 404                | Not Found - The requested item doesn’t exist              |\n| 500, 502, 503, 504 | Server Errors - something is wrong on Mailgun’s end       |\n\n## Webhooks\n\nMailgun can also POST data to your application when events (opens, clicks, bounces, etc.) occur or when you use Routes. You can read more about webhooks and [Routes](https://documentation.mailgun.com/en/latest/user_manual.html#um-routes) in the [User Manual](https://documentation.mailgun.com/en/latest/user_manual.html#user-manual).\n\n## Mailgun Regions\n\nUsing a single account and billing plan, you can choose to provision new sending domains in the EU environment. Message data never leaves the region in which it is processed. Only a limited amount of account data is replicated globally, giving you a single account from which to manage domains in both the US and the EU. Here are the specifics on the type of data that is replicated globally versus what is region-bound.\n\n| Global                                                                                                  | Region-Bound (US / EU)                                                                                                             |\n|---------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|\n| Account Information, User Accounts, Billing Details (invoices/plan information), API Keys, Domain Names | Domain Metadata (e.g. SMTP credentials), Messages, Event Logs, Suppressions, Mailing Lists, Tags, Statistics, Routes, IP Addresses |\n\nThe endpoints you will use for sending/receiving/tracking messages in the EU are below:\n\n| Service                      | US Endpoint      | EU Endpoint         |\n|------------------------------|------------------|---------------------|\n| REST API                     | api.mailgun.net  | api.eu.mailgun.net  |\n| Outgoing SMTP Server         | smtp.mailgun.org | smtp.eu.mailgun.org |\n| Inbound SMTP Server (Routes) | mxa.mailgun.org  | mxa.eu.mailgun.org  |\n| Inbound SMTP Server (Routes) | mxb.mailgun.org  | mxb.eu.mailgun.org  |\n| Open/Click Tracking Endpoint | mailgun.org      | eu.mailgun.org      |",
+        "description": "Introduction\n=======\n\nThe Mailgun API is built on HTTP. Our API is RESTful and it:\n\n* Uses predictable, resource-oriented URLs.\n* Uses built-in HTTP capabilities for passing parameters and authentication.\n* Responds with standard HTTP response codes to indicate errors.\n* Returns JSON.\n\nMailgun has published [Libraries](https://documentation.mailgun.com/en/latest/libraries.html#libraries) for various languages. You may use our libraries, or your favorite HTTP/REST library available for your programming language, to make HTTP calls to Mailgun. Visit our Libraries page to see HTTP REST libraries we recommend.\n\nTo give you an idea of how to use the API, we have annotated our documentation with code samples written in several popular programming languages. Use the language selector at the top to switch between them.\n\nOur samples from [quickstart](https://documentation.mailgun.com/en/latest/quickstart.html), [User Manual](https://documentation.mailgun.com/en/latest/user_manual.html#user-manual), and [API Reference](https://documentation.mailgun.com/en/latest/api_reference.html#api-reference) provide examples that will function. You’re welcome to copy/paste and run the script to see the API in action.\n\n## Base URL\n\nAll API URLs referenced in this documentation start with the following base part:\n> https://api.mailgun.net/v3\n\nYour Mailgun account may contain several email domains. To avoid passing the domain name as a query parameter, most API URLs must include the name of the domain you’re interested in:\n> https://api.mailgun.net/v3/domain.com\n\n## Authentication\n\nWhen you sign up for an account, you are given an API key. You authenticate to the Mailgun API by providing your API key in the request. You can manage your API key in the “Security” tab under the Account section of the Control Panel.\n\nAuthentication to the API occurs via [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication). Use `api` as the user name and your API key is the password. Here is how you use basic HTTP auth with curl:\n> curl --user 'api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0'\n\nOr you can try the following API call right from your browser:\n> https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0@api.mailgun.net/v3/samples.mailgun.org/log\n\n**Warning:** Keep your API key secret!\n\n## Date Format\n\nMailgun returns JSON for all API calls. JSON does not have a built-in date type, dates are passed as strings encoded according to [RFC 2822#page-14](https://tools.ietf.org/html/rfc2822.html#page-14). This format is native to JavaScript and is also supported by most programming languages out of the box:\n\n> 'Thu, 13 Oct 2011 18:02:00 GMT'\n\n## Errors\n\n| Code               | Description                                               |\n|--------------------|-----------------------------------------------------------|\n| 200                | Everything worked as expected                             |\n| 400                | Bad Request - Often missing a required parameter          |\n| 401                | Unauthorized - No valid API key provided                  |\n| 402                | Request Failed - Parameters were valid but request failed |\n| 404                | Not Found - The requested item doesn’t exist              |\n| 500, 502, 503, 504 | Server Errors - something is wrong on Mailgun’s end       |\n\n## Webhooks\n\nMailgun can also POST data to your application when events (opens, clicks, bounces, etc.) occur or when you use Routes. You can read more about webhooks and [Routes](https://documentation.mailgun.com/en/latest/user_manual.html#um-routes) in the [User Manual](https://documentation.mailgun.com/en/latest/user_manual.html#user-manual).\n\n## Mailgun Regions\n\nUsing a single account and billing plan, you can choose to provision new sending domains in the EU environment. Message data never leaves the region in which it is processed. Only a limited amount of account data is replicated globally, giving you a single account from which to manage domains in both the US and the EU. Here are the specifics on the type of data that is replicated globally versus what is region-bound.\n\n| Global                                                                                                  | Region-Bound (US / EU)                                                                                                             |\n|---------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|\n| Account Information, User Accounts, Billing Details (invoices/plan information), API Keys, Domain Names | Domain Metadata (e.g. SMTP credentials), Messages, Event Logs, Suppressions, Mailing Lists, Tags, Statistics, Routes, IP Addresses |\n\nThe endpoints you will use for sending/receiving/tracking messages in the EU are below:\n\n| Service                      | US Endpoint      | EU Endpoint         |\n|------------------------------|------------------|---------------------|\n| REST API                     | api.mailgun.net  | api.eu.mailgun.net  |\n| Outgoing SMTP Server         | smtp.mailgun.org | smtp.eu.mailgun.org |\n| Inbound SMTP Server (Routes) | mxa.mailgun.org  | mxa.eu.mailgun.org  |\n| Inbound SMTP Server (Routes) | mxb.mailgun.org  | mxb.eu.mailgun.org  |\n| Open/Click Tracking Endpoint | mailgun.org      | eu.mailgun.org      |",
         "version": "1.0.0"
     },
     "servers": [
@@ -53,7 +53,7 @@
         },
         {
             "name": "Routes",
-            "description": "Mailgun Routes are a powerful way to handle the incoming traffic. See [Routes](https://documentation.mailgun.com/en/latest/user_manual.html#um-routes) section in the User Manual to learn more about how they work. This API allows you to work with routes programmatically.\n\nRoutes are comprised of the following arguments:\n\n* A filter (when to do something).\n* A priority (in what order).\n* An action (what to do).\n\n## Filters\n\nRoute filters are expressions that determine when an action is triggered. You can create a filter based on the recipient of the incoming email, the headers in the incoming email or use a catch-all filter. Filters support regular expressions in the pattern to give you a lot of flexibility when creating them.\n\n**match_recipient(pattern)**\n\nMatches smtp recipient of the incoming message against the regular expression pattern. For example this will match all messages coming to any recipient at @bar.com:\n\n> match_recipient(\".*@bar.com\")\n\n**match_header(header, pattern)**\n\nSimilar to `match_recipient` but instead of looking at a message recipient, it applies the pattern to an arbitrary MIME header of the message. For this will match any message with a word “support” in its subject:\n\n> (\"subject\", \".*support\")\n\n**catch_all()**\n\nMatches if no preceeding routes matched. Usually you need to use it in a route with a lowest priority, to make sure it evaluates last.\n\n## Actions\n\nIf a route expression evaluates to true, Mailgun executes the corresponding action. Currently you can use the following three actions in your routes: `forward()`, `store()` and `stop()`.\n\n**forward(destination)**\n\nForwards the message to a specified destination, which can be another email address or a URL. A few examples:\n\n> forward(\"mailbox@myapp.com\")\nforward(\"http://myapp.com/messages\")\n\n**store(notification endpoint)**\n\nStores the message temporarily (for up to 3 days) on Mailgun’s servers so that you can retrieve them later. This is helpful for large messages that may cause time outs or if you just want to retrieve them later.\n\nYou can specify a URL and we will notify you when the email arrives along with a URL where you can use to retrieve the message:\n\n> store(notify=\"http://mydomain.com/callback\")\n\nYou can see a full list of parameters we will post to your URL in the [Routes](https://documentation.mailgun.com/en/latest/user_manual.html#um-routes) section of the User Manual. You can also get the locations of messages through the [Events API](https://documentation.mailgun.com/en/latest/api-events.html#api-events) and then retrieve the message through the [Messages API](https://documentation.mailgun.com/en/latest/api-sending.html#api-sending-messages).\n\n**stop()**\n\nSimply stops the priority waterfall so the subsequent routes will not be evaluated. Without a stop() action executed, all lower priority Routes will also be evaluated."
+            "description": "Mailgun Routes are a powerful way to handle the incoming traffic. See [Routes](https://documentation.mailgun.com/en/latest/user_manual.html#um-routes) section in the User Manual to learn more about how they work. This API allows you to work with routes programmatically.\n\nRoutes are comprised of the following arguments:\n\n* A filter (when to do something).\n* A priority (in what order).\n* An action (what to do).\n\n## Filters\n\nRoute filters are expressions that determine when an action is triggered. You can create a filter based on the recipient of the incoming email, the headers in the incoming email or use a catch-all filter. Filters support regular expressions in the pattern to give you a lot of flexibility when creating them.\n\n**match_recipient(pattern)**\n\nMatches smtp recipient of the incoming message against the regular expression pattern. For example this will match all messages coming to any recipient at @bar.com:\n\n> match_recipient(\".*@bar.com\")\n\n**match_header(header, pattern)**\n\nSimilar to `match_recipient` but instead of looking at a message recipient, it applies the pattern to an arbitrary MIME header of the message. For this will match any message with a word “support” in its subject:\n\n> (\"subject\", \".*support\")\n\n**catch_all()**\n\nMatches if no preceeding routes matched. Usually you need to use it in a route with a lowest priority, to make sure it evaluates last.\n\n## Actions\n\nIf a route expression evaluates to true, Mailgun executes the corresponding action. Currently you can use the following three actions in your routes: `forward()`, `store()` and `stop()`.\n\n**forward(destination)**\n\nForwards the message to a specified destination, which can be another email address or a URL. A few examples:\n\n> forward(\"mailbox@myapp.com\")\nforward(\"http://myapp.com/messages\")\n\n**store(notification endpoint)**\n\nStores the message temporarily (for up to 3 days) on Mailgun’s servers so that you can retrieve them later. This is helpful for large messages that may cause time outs or if you just want to retrieve them later.\n\nYou can specify a URL and we will notify you when the email arrives along with a URL where you can use to retrieve the message:\n\n> store(notify=\"http://domain.com/callback\")\n\nYou can see a full list of parameters we will post to your URL in the [Routes](https://documentation.mailgun.com/en/latest/user_manual.html#um-routes) section of the User Manual. You can also get the locations of messages through the [Events API](https://documentation.mailgun.com/en/latest/api-events.html#api-events) and then retrieve the message through the [Messages API](https://documentation.mailgun.com/en/latest/api-sending.html#api-sending-messages).\n\n**stop()**\n\nSimply stops the priority waterfall so the subsequent routes will not be evaluated. Without a stop() action executed, all lower priority Routes will also be evaluated."
         },
         {
             "name": "Webhooks"
@@ -66,14 +66,14 @@
         }
     ],
     "paths": {
-        "/{mydomain}/messages": {
+        "/{domain}/messages": {
             "post": {
                 "tags": [
                     "Messages"
                 ],
-                "operationId": "sendMessages",
-                "summary": "Send message with MIME",
-                "description": "Posts a message in MIME format. Note: you will need to build a MIME string yourself. Use a MIME library for your programming language to do this. Pass the resulting MIME string as `message` parameter.\n\n\n| Parameter         | Description                                                                                                                                                                              |\n|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n| to                | Email address of the recipient(s). Example: `\"Bob <bob@host.com>\"`. You can use commas to separate multiple recipients. Make sure to include all `To`, `Cc` and `Bcc` recipients of the message. |\n| message           | MIME string of the message. Make sure to use `application/x-www-form-urlencoded` to send this as a file upload.                                                                                          |\n| o:tag             | Tag string. See [Tagging](https://documentation.mailgun.com/en/latest/user_manual.html#tagging) for more information.                                                                                                                                            |\n| o:deliverytime    | Desired time of delivery. See [Date Format](https://documentation.mailgun.com/en/latest/api-intro.html#date-format). Note: Messages can be scheduled for a maximum of 3 days in the future.                                                                        |\n| o:dkim            | Enables/disabled DKIM signatures on per-message basis. Pass `yes` or `no`                                                                                                                    |\n| o:testmode        | Enables sending in test mode. Pass `yes` if needed. See [Sending in Test Mode](https://documentation.mailgun.com/en/latest/user_manual.html#manual-testmode)                                                                                                               |\n| o:tracking        | Toggles tracking on a per-message basis, see [Tracking Messages](https://documentation.mailgun.com/en/latest/user_manual.html#tracking-messages) for details. Pass `yes` or `no`.                                                                                              |\n| o:tracking-clicks | Toggles clicks tracking on a per-message basis. Has higher priority than domain-level setting. Pass `yes`, `no` or `htmlonly`.                                                                 |\n| o:tracking-opens  | Toggles opens tracking on a per-message basis. Has higher priority than domain-level setting. Pass `yes` or `no`.                                                                            |\n| h:X-My-Header     | `h:` prefix followed by an arbitrary value allows to append a custom MIME header to the message (`X-My-Header` in this case). For example, `h:Reply-To` to specify Reply-To address.           |\n| v:my-var          | `v:` prefix followed by an arbitrary name allows to attach a custom JSON data to the message. See [Attaching Data to Messages](https://documentation.mailgun.com/en/latest/user_manual.html#manual-customdata) for more information.                                         |",
+                "operationId": "sendMessage",
+                "summary": "Sending a message with HTML and text parts, and attachments",
+                "description": "sends a message",
                 "requestBody": {
                     "content": {
                         "application/x-www-form-urlencoded": {
@@ -88,6 +88,14 @@
                                         "type": "string",
                                         "example": "test@mailgun.com"
                                     },
+                                    "cc": {
+                                        "type": "string",
+                                        "example": "mkane@mailgun.com"
+                                    },
+                                    "bcc": {
+                                        "type": "string",
+                                        "example": "blabla@gmailgun.com"
+                                    },
                                     "subject": {
                                         "type": "string",
                                         "example": "attachment test"
@@ -96,13 +104,89 @@
                                         "type": "string",
                                         "example": "the body"
                                     },
+                                    "html": {
+                                        "type": "string",
+                                        "example": "<html>Inline image here: <img src=\"cid:my-unique-id\"></html>"
+                                    },
                                     "attachment": {
                                         "type": "string",
                                         "format": "binary"
                                     },
-                                    "cc": {
+                                    "inline": {
                                         "type": "string",
-                                        "example": "mkane@mailgun.com"
+                                        "format": "binary"
+                                    },
+                                    "template": {
+                                        "type": "string",
+                                        "example": "my-template"
+                                    },
+                                    "t:version": {
+                                        "type": "string",
+                                        "example": "version of template"
+                                    },
+                                    "t:text": {
+                                        "type": "boolean",
+                                        "example": "false"
+                                    },
+                                    "t:variables": {
+                                        "type": "string",
+                                        "example": "{\"name\": \"Bob\", \"age\": \"30\"}"
+                                    },
+                                    "o:tag": {
+                                        "type": "string",
+                                        "example": "tag"
+                                    },
+                                    "o:dkim": {
+                                        "type": "string",
+                                        "example": "yes"
+                                    },
+                                    "o:deliverytime": {
+                                        "type": "string",
+                                        "example": "Fri, 25 May 2018 14:00:00 GMT"
+                                    },
+                                    "o:deliverytime-optimize-period": {
+                                        "type": "string",
+                                        "example": "1h"
+                                    },
+                                    "o:time-zone-localize": {
+                                        "type": "string",
+                                        "example": "yes"
+                                    },
+                                    "o:testmode": {
+                                        "type": "string",
+                                        "example": "yes"
+                                    },
+                                    "o:tracking": {
+                                        "type": "string",
+                                        "example": "yes"
+                                    },
+                                    "o:tracking-clicks": {
+                                        "type": "string",
+                                        "example": "yes"
+                                    },
+                                    "o:tracking-opens": {
+                                        "type": "string",
+                                        "example": "yes"
+                                    },
+                                    "o:tracking-pixel-location-top": {
+                                        "type": "string",
+                                        "example": "yes"
+                                    },
+                                    "o:require-tls": {
+                                        "type": "string",
+                                        "example": "yes"
+                                    },
+                                    "o:skip-verification": {
+                                        "type": "string",
+                                        "example": "yes"
+                                    },
+                                    "h:X-My-Header": {
+                                        "type": "string",
+                                        "example": "value"
+                                    },
+                                    "v:my-var": {
+                                        "type": "string",
+                                        "example": "value"
                                     }
                                 }
                             }
@@ -127,7 +211,7 @@
                         "example": "{{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -227,14 +311,14 @@
                 }
             }
         },
-        "/{mydomain}/messages/{message_ID}": {
+        "/{domain}/messages/{message_ID}": {
             "get": {
                 "tags": [
                     "Messages"
                 ],
                 "operationId": "getMessage",
                 "summary": "Retrieving Stored Messages",
-                "description": "To retrieve an inbound message that has been stored via the `store()` action, use the URL found in the stored event (which you can find through the Events API, or in the notify webhook set when creating the store action (`store(notify=\"http://mydomain.com/callback\")`).\n\n* By default the message will be returned in JSON form with parsed parts. Links to the attachments will be included.\n* You can also retrieve the full raw mime message (attachments and all) if you make the request to the URL with the `Accept` header set to `message/rfc2822`.\n* Stored messages are encoded with [Quoted-printable](https://en.wikipedia.org/wiki/Quoted-printable) encoding. Decoding samples are available in the examples section below.\n\n\nThese are the parameters of the JSON returned from a GET request to a stored message url.\n\n| Parameter          | Type   | Description                                                                                                                                                                                                      |\n|--------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n| recipients         | string | recipient of the message as reported by `MAIL` `TO` during SMTP chat.                                                                                                                                                |\n| sender             | string | sender of the message as reported by `MAIL` `FROM` during SMTP chat. Note: this value may differ from `From` MIME header.                                                                                              |\n| from               | string | sender of the message as reported by `From` message header, for example “Bob Lee <blee@mailgun.net>”.                                                                                                              |\n| subject            | string | subject string.                                                                                                                                                                                                  |\n| body-plain         | string | text version of the email. This field is always present. If the incoming message only has HTML body, Mailgun will create a text representation for you.                                                          |\n| stripped-text      | string | text version of the message without quoted parts and signature block (if found).                                                                                                                                 |\n| stripped-signature | string | the signature block stripped from the plain text message (if found).                                                                                                                                             |\n| body-html          | string | HTML version of the message, if message was multipart. Note that all parts of the message will be posted, not just text/html. For instance if a message arrives with “foo” part it will be posted as “body-foo”. |\n| stripped-html      | string | HTML version of the message, without quoted parts.                                                                                                                                                               |\n| attachments        | string | contains a json list of metadata objects, one for each attachment, see below.                                                                                                                                    |\n| message-headers    | string | list of all MIME headers dumped to a json string (order of headers preserved).                                                                                                                                   |\n| content-id-map     | string | JSON-encoded dictionary which maps Content-ID (CID) of each attachment to the corresponding `attachment-x` parameter. This allows you to map posted attachments to tags like `<img src='cid'>` in the message body.  |\n\n\n> Note Do not rely on the `body-plain`, `stripped-text`, and `stripped-signature` fields for HTML sanitization. These fields merely provide content from the text/plain portion of an incoming message. This content may contain unescaped HTML.\n\nThe attachments JSON contains the following items.\n\n| Parameter    | Type    | Description                                                                       |\n|--------------|---------|-----------------------------------------------------------------------------------|\n| size         | integer | indicates the size of the attachment in bytes.                                    |\n| url          | string  | contains the url where the attachment can be found. This does not support DELETE. |\n| name         | string  | the name of the attachment                                                        |\n| content-type | string  | the content type of the attachment                                                |\n\n\nThese are the parameters when the `Accept` header is set to `message/rfc2822`\n\n| Parameter | Type   | Description                                                                                    |\n|-----------|--------|------------------------------------------------------------------------------------------------|\n| recipient | string | recipient of the message.                                                                      |\n| sender    | string | sender of the message as reported by SMTP MAIL FROM.                                           |\n| from      | string | sender of the message as reported by `From` message header, for example “Bob <bob@example.com>”. |\n| subject   | string | subject string.                                                                                |\n| body-mime | string | full MIME envelope. You will need a MIME parsing library to process this data.                 |",
+                "description": "To retrieve an inbound message that has been stored via the `store()` action, use the URL found in the stored event (which you can find through the Events API, or in the notify webhook set when creating the store action (`store(notify=\"http://domain.com/callback\")`).\n\n* By default the message will be returned in JSON form with parsed parts. Links to the attachments will be included.\n* You can also retrieve the full raw mime message (attachments and all) if you make the request to the URL with the `Accept` header set to `message/rfc2822`.\n* Stored messages are encoded with [Quoted-printable](https://en.wikipedia.org/wiki/Quoted-printable) encoding. Decoding samples are available in the examples section below.\n\n\nThese are the parameters of the JSON returned from a GET request to a stored message url.\n\n| Parameter          | Type   | Description                                                                                                                                                                                                      |\n|--------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n| recipients         | string | recipient of the message as reported by `MAIL` `TO` during SMTP chat.                                                                                                                                                |\n| sender             | string | sender of the message as reported by `MAIL` `FROM` during SMTP chat. Note: this value may differ from `From` MIME header.                                                                                              |\n| from               | string | sender of the message as reported by `From` message header, for example “Bob Lee <blee@mailgun.net>”.                                                                                                              |\n| subject            | string | subject string.                                                                                                                                                                                                  |\n| body-plain         | string | text version of the email. This field is always present. If the incoming message only has HTML body, Mailgun will create a text representation for you.                                                          |\n| stripped-text      | string | text version of the message without quoted parts and signature block (if found).                                                                                                                                 |\n| stripped-signature | string | the signature block stripped from the plain text message (if found).                                                                                                                                             |\n| body-html          | string | HTML version of the message, if message was multipart. Note that all parts of the message will be posted, not just text/html. For instance if a message arrives with “foo” part it will be posted as “body-foo”. |\n| stripped-html      | string | HTML version of the message, without quoted parts.                                                                                                                                                               |\n| attachments        | string | contains a json list of metadata objects, one for each attachment, see below.                                                                                                                                    |\n| message-headers    | string | list of all MIME headers dumped to a json string (order of headers preserved).                                                                                                                                   |\n| content-id-map     | string | JSON-encoded dictionary which maps Content-ID (CID) of each attachment to the corresponding `attachment-x` parameter. This allows you to map posted attachments to tags like `<img src='cid'>` in the message body.  |\n\n\n> Note Do not rely on the `body-plain`, `stripped-text`, and `stripped-signature` fields for HTML sanitization. These fields merely provide content from the text/plain portion of an incoming message. This content may contain unescaped HTML.\n\nThe attachments JSON contains the following items.\n\n| Parameter    | Type    | Description                                                                       |\n|--------------|---------|-----------------------------------------------------------------------------------|\n| size         | integer | indicates the size of the attachment in bytes.                                    |\n| url          | string  | contains the url where the attachment can be found. This does not support DELETE. |\n| name         | string  | the name of the attachment                                                        |\n| content-type | string  | the content type of the attachment                                                |\n\n\nThese are the parameters when the `Accept` header is set to `message/rfc2822`\n\n| Parameter | Type   | Description                                                                                    |\n|-----------|--------|------------------------------------------------------------------------------------------------|\n| recipient | string | recipient of the message.                                                                      |\n| sender    | string | sender of the message as reported by SMTP MAIL FROM.                                           |\n| from      | string | sender of the message as reported by `From` message header, for example “Bob <bob@example.com>”. |\n| subject   | string | subject string.                                                                                |\n| body-mime | string | full MIME envelope. You will need a MIME parsing library to process this data.                 |",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -245,7 +329,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -368,7 +452,7 @@
                 }
             }
         },
-        "/domains/{mydomain}": {
+        "/domains/{domain}": {
             "get": {
                 "tags": [
                     "Domains"
@@ -386,7 +470,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -424,7 +508,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -446,7 +530,7 @@
                 }
             }
         },
-        "/domains/{mydomain}/verify": {
+        "/domains/{domain}/verify": {
             "put": {
                 "tags": [
                     "Domains"
@@ -473,7 +557,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -495,7 +579,7 @@
                 }
             }
         },
-        "/domains/{mydomain}/credentials": {
+        "/domains/{domain}/credentials": {
             "get": {
                 "tags": [
                     "Domains"
@@ -531,7 +615,7 @@
                         "example": "0"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -588,7 +672,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -610,7 +694,7 @@
                 }
             }
         },
-        "/domains/{mydomain}/credentials/{login}": {
+        "/domains/{domain}/credentials/{login}": {
             "put": {
                 "tags": [
                     "Domains"
@@ -643,7 +727,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -689,7 +773,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -719,7 +803,7 @@
                 }
             }
         },
-        "/domains/{mydomain}/connection": {
+        "/domains/{domain}/connection": {
             "get": {
                 "tags": [
                     "Domains"
@@ -737,7 +821,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -796,7 +880,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -818,7 +902,7 @@
                 }
             }
         },
-        "/domains/{mydomain}/tracking": {
+        "/domains/{domain}/tracking": {
             "get": {
                 "tags": [
                     "Domains"
@@ -836,7 +920,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -858,7 +942,7 @@
                 }
             }
         },
-        "/domains/{mydomain}/tracking/open": {
+        "/domains/{domain}/tracking/open": {
             "put": {
                 "tags": [
                     "Domains"
@@ -891,7 +975,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -903,13 +987,17 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
                         }
                     }
                 }
             }
         },
-        "/domains/{mydomain}/tracking/click": {
+        "/domains/{domain}/tracking/click": {
             "put": {
                 "tags": [
                     "Domains"
@@ -942,7 +1030,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -954,13 +1042,17 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
                         }
                     }
                 }
             }
         },
-        "/domains/{mydomain}/tracking/unsubscribe": {
+        "/domains/{domain}/tracking/unsubscribe": {
             "put": {
                 "tags": [
                     "Domains"
@@ -1001,7 +1093,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -1013,13 +1105,17 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
                         }
                     }
                 }
             }
         },
-        "/domains/{mydomain}/dkim_authority": {
+        "/domains/{domain}/dkim_authority": {
             "put": {
                 "tags": [
                     "Domains"
@@ -1052,7 +1148,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -1064,7 +1160,11 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
                         }
                     }
                 }
@@ -1154,7 +1254,7 @@
                 }
             }
         },
-        "/v3/domains/{mydomain}/ips": {
+        "/v3/domains/{domain}/ips": {
             "get": {
                 "tags": [
                     "IPs"
@@ -1172,7 +1272,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -1201,7 +1301,7 @@
                 }
             }
         },
-        "/domains/{mydomain}/ips": {
+        "/domains/{domain}/ips": {
             "post": {
                 "tags": [
                     "IPs"
@@ -1234,7 +1334,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -1259,7 +1359,7 @@
                 }
             }
         },
-        "/domains/{mydomain}/ips/{ip}": {
+        "/domains/{domain}/ips/{ip}": {
             "delete": {
                 "tags": [
                     "IPs"
@@ -1277,7 +1377,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -1310,7 +1410,7 @@
                 }
             }
         },
-        "/v3/{mydomain}/events": {
+        "/v3/{domain}/events": {
             "get": {
                 "tags": [
                     "Events"
@@ -1328,7 +1428,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -1387,7 +1487,7 @@
                 }
             }
         },
-        "/{mydomain}/stats/total": {
+        "/{domain}/stats/total": {
             "get": {
                 "tags": [
                     "Stats"
@@ -1414,7 +1514,7 @@
                         "example": "accepted"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -1469,7 +1569,7 @@
                 }
             }
         },
-        "/{mydomain}/stats": {
+        "/{domain}/stats": {
             "get": {
                 "tags": [
                     "Stats"
@@ -1505,7 +1605,7 @@
                         "example": "0"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -1517,13 +1617,17 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
                         }
                     }
                 }
             }
         },
-        "/{mydomain}/tags": {
+        "/{domain}/tags": {
             "get": {
                 "tags": [
                     "Tags"
@@ -1541,7 +1645,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -1553,13 +1657,17 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetDomainTags"
+                                }
+                            }
                         }
                     }
                 }
             }
         },
-        "/{mydomain}/tags/{tag}": {
+        "/{domain}/tags/{tag}": {
             "get": {
                 "tags": [
                     "Tags"
@@ -1577,7 +1685,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -1597,7 +1705,11 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
                         }
                     }
                 }
@@ -1642,7 +1754,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -1662,7 +1774,11 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
                         }
                     }
                 }
@@ -1684,7 +1800,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -1704,13 +1820,17 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeleteTag"
+                                }
+                            }
                         }
                     }
                 }
             }
         },
-        "/{mydomain}/tags/{tag}/stats/aggregates/providers": {
+        "/{domain}/tags/{tag}/stats/aggregates/providers": {
             "get": {
                 "tags": [
                     "Tags"
@@ -1728,7 +1848,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -1748,13 +1868,17 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetProvidersEvents"
+                                }
+                            }
                         }
                     }
                 }
             }
         },
-        "/{mydomain}/tags/{tag}/stats": {
+        "/{domain}/tags/{tag}/stats": {
             "get": {
                 "tags": [
                     "Tags"
@@ -1781,7 +1905,7 @@
                         "example": "accepted"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -1801,13 +1925,17 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
                         }
                     }
                 }
             }
         },
-        "/{mydomain}/tags/{tag}/stats/aggregates/countries": {
+        "/{domain}/tags/{tag}/stats/aggregates/countries": {
             "get": {
                 "tags": [
                     "Tags"
@@ -1825,7 +1953,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -1845,13 +1973,17 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProviderCountryEvents"
+                                }
+                            }
                         }
                     }
                 }
             }
         },
-        "/{mydomain}/tags/{tag}/stats/aggregates/devices": {
+        "/{domain}/tags/{tag}/stats/aggregates/devices": {
             "get": {
                 "tags": [
                     "Tags"
@@ -1869,7 +2001,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -1889,13 +2021,17 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProviderDeviceEvents"
+                                }
+                            }
                         }
                     }
                 }
             }
         },
-        "/{mydomain}/bounces": {
+        "/{domain}/bounces": {
             "get": {
                 "tags": [
                     "Suppressions > Bounces"
@@ -1913,7 +2049,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -1994,7 +2130,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -2006,7 +2142,11 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AddBounceResponse"
+                                }
+                            }
                         }
                     }
                 }
@@ -2036,7 +2176,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -2061,7 +2201,7 @@
                 }
             }
         },
-        "/{mydomain}/bounces/{address}": {
+        "/{domain}/bounces/{address}": {
             "get": {
                 "tags": [
                     "Suppressions > Bounces"
@@ -2079,7 +2219,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -2139,7 +2279,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -2172,7 +2312,7 @@
                 }
             }
         },
-        "/v3/{mydomain}/bounces": {
+        "/v3/{domain}/bounces": {
             "post": {
                 "tags": [
                     "Suppressions > Bounces"
@@ -2182,10 +2322,9 @@
                 "description": "Add a bounce record to the bounce list. Updates the existing record if the address is already there.",
                 "requestBody": {
                     "content": {
-                        "*/*": {
+                        "application/json": {
                             "schema": {
-                                "type": "string",
-                                "example": "\"[\\n  {\\n    \\\"address\\\": \\\"alice@example.com\\\",\\n    \\\"code\\\": \\\"550\\\",\\n    \\\"error\\\": \\\"Bounced\\\",\\n    \\\"created_at\\\": \\\"Thu, 13 Oct 2011 18:02:00 UTC\\\"\\n  },\\n  {\\n    \\\"address\\\": \\\"bob@example.com\\\",\\n    \\\"code\\\": \\\"550\\\",\\n    \\\"error\\\": \\\"Bounced\\\"\\n  },\\n  {\\n    \\\"address\\\": \\\"carol@example.com\\\",\\n    \\\"code\\\": \\\"550\\\"\\n  },\\n  {\\n    \\\"address\\\": \\\"dan@example.com\\\"\\n  }\\n]\\n\""
+                                "$ref": "#/components/schemas/AddBouncesRequest"
                             }
                         }
                     }
@@ -2208,7 +2347,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -2233,7 +2372,7 @@
                 }
             }
         },
-        "/{mydomain}/complaints": {
+        "/{domain}/complaints": {
             "get": {
                 "tags": [
                     "Suppressions > Complaints"
@@ -2251,7 +2390,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -2284,10 +2423,9 @@
                 "description": "Add multiple unsubscribe records to the unsubscribe list in a single API call.",
                 "requestBody": {
                     "content": {
-                        "*/*": {
+                        "application/json": {
                             "schema": {
-                                "type": "string",
-                                "example": "\"[\\n  {\\n    \\\"address\\\": \\\"alice@example.com\\\",\\n    \\\"created_at\\\": \\\"Thu, 13 Oct 2011 18:02:00 UTC\\\"\\n  },\\n  {\\n    \\\"address\\\": \\\"bob@example.com\\\"\\n  }\\n]\""
+                                "$ref": "#/components/schemas/ComplaintRequest"
                             }
                         }
                     }
@@ -2310,7 +2448,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -2335,7 +2473,7 @@
                 }
             }
         },
-        "/{mydomain}/complaints/{address}": {
+        "/{domain}/complaints/{address}": {
             "get": {
                 "tags": [
                     "Suppressions > Complaints"
@@ -2361,7 +2499,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -2418,7 +2556,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -2451,7 +2589,7 @@
                 }
             }
         },
-        "/v3/{mydomain}/complaints": {
+        "/v3/{domain}/complaints": {
             "post": {
                 "tags": [
                     "Suppressions > Complaints"
@@ -2496,7 +2634,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -2521,7 +2659,7 @@
                 }
             }
         },
-        "/{mydomain}/unsubscribes": {
+        "/{domain}/unsubscribes": {
             "get": {
                 "tags": [
                     "Suppressions > Unsubscribes"
@@ -2539,7 +2677,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -2572,10 +2710,9 @@
                 "description": "Add multiple unsubscribe records to the unsubscribe list in a single API call.",
                 "requestBody": {
                     "content": {
-                        "*/*": {
+                        "application/json": {
                             "schema": {
-                                "type": "string",
-                                "example": "\"[\\n  {\\n    \\\"address\\\": \\\"alice@example.com\\\",\\n    \\\"tags\\\": [\\\"some tag\\\"],\\n    \\\"created_at\\\": \\\"Thu, 13 Oct 2011 18:02:00 UTC\\\"\\n  },\\n  {\\n    \\\"address\\\": \\\"bob@example.com\\\",\\n    \\\"tags\\\": [\\\"*\\\"]\\n  },\\n  {\\n    \\\"address\\\": \\\"carol@example.com\\\"\\n  }\\n]\""
+                                "$ref": "#/components/schemas/UnsubscribeRequest"
                             }
                         }
                     }
@@ -2598,7 +2735,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -2623,7 +2760,7 @@
                 }
             }
         },
-        "/{mydomain}/unsubscribes/{address}": {
+        "/{domain}/unsubscribes/{address}": {
             "get": {
                 "tags": [
                     "Suppressions > Unsubscribes"
@@ -2641,7 +2778,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -2690,7 +2827,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -3063,13 +3200,17 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
                         }
                     }
                 }
             }
         },
-        "/{mydomain}/routes/{id}": {
+        "/{domain}/routes/{id}": {
             "delete": {
                 "tags": [
                     "Routes"
@@ -3087,7 +3228,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -3107,13 +3248,17 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
                         }
                     }
                 }
             }
         },
-        "/domains/{mydomain}/webhooks": {
+        "/domains/{domain}/webhooks": {
             "get": {
                 "tags": [
                     "Webhooks"
@@ -3131,7 +3276,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -3269,7 +3414,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -3301,7 +3446,7 @@
                 }
             }
         },
-        "/domains/{mydomain}/webhooks/{webhookname}": {
+        "/domains/{domain}/webhooks/{webhookname}": {
             "get": {
                 "tags": [
                     "Webhooks"
@@ -3319,7 +3464,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -3395,7 +3540,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -3448,7 +3593,7 @@
                         "example": "Basic {{token}}"
                     },
                     {
-                        "name": "mydomain",
+                        "name": "domain",
                         "in": "path",
                         "schema": {
                             "type": "string"
@@ -3583,7 +3728,11 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
                         }
                     }
                 }
@@ -3643,7 +3792,11 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
                         }
                     }
                 }
@@ -3677,7 +3830,11 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
                         }
                     }
                 }
@@ -3798,7 +3955,11 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListMembersResponse"
+                                }
+                            }
                         }
                     }
                 }
@@ -3842,7 +4003,11 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListMemberAddressResponse"
+                                }
+                            }
                         }
                     }
                 }
@@ -3911,7 +4076,11 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateMailingList"
+                                }
+                            }
                         }
                     }
                 }
@@ -3953,7 +4122,11 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeleteListMember"
+                                }
+                            }
                         }
                     }
                 }
@@ -4128,7 +4301,11 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
                         }
                     }
                 }
@@ -4288,7 +4465,11 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
                         }
                     }
                 }
@@ -4315,7 +4496,11 @@
                     "200": {
                         "description": "Successful response",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
                         }
                     }
                 }
@@ -4330,6 +4515,119 @@
             }
         },
         "schemas": {
+            "Member": {
+                "type": "object",
+                "properties": {
+                    "vars": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "A collection of custom variables stored for the member."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the member."
+                    },
+                    "subscribed": {
+                        "type": "boolean",
+                        "description": "Indicates whether the member is subscribed to the mailing list."
+                    },
+                    "address": {
+                        "type": "string",
+                        "description": "The email address of the member."
+                    }
+                }
+            },
+            "AddBouncesRequest": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/BounceMail"
+                }
+            },
+            "BounceMail": {
+                "type": "object",
+                "properties": {
+                    "address": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "alice@example.com"
+                    },
+                    "code": {
+                        "type": "string",
+                        "example": "550"
+                    },
+                    "error": {
+                        "type": "string",
+                        "example": "Bounced"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "Thu, 13 Oct 2011 18:02:00 UTC"
+                    }
+                },
+                "required": [
+                    "address"
+                ]
+            },
+            "ComplaintRequest": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Complaint"
+                }
+            },
+            "Complaint": {
+                "type": "object",
+                "properties": {
+                    "address": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "alice@example.com"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "Thu, 13 Oct 2011 18:02:00 UTC"
+                    }
+                },
+                "required": [
+                    "address"
+                ]
+            },
+            "UnsubscribeRequest": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Unsubscribe"
+                }
+            },
+            "Unsubscribe": {
+                "type": "object",
+                "properties": {
+                    "address": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "alice@example.com"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example": [
+                            "some tag"
+                        ]
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "Thu, 13 Oct 2011 18:02:00 UTC"
+                    }
+                },
+                "required": [
+                    "address"
+                ]
+            },
             "Credential": {
                 "type": "object",
                 "properties": {
@@ -4454,13 +4752,300 @@
                     }
                 }
             },
-            "DeleteCredentialsResponse": {
+            "AddBounceResponse": {
                 "type": "object",
                 "properties": {
                     "message": {
                         "type": "string"
                     },
-                    "spec": {
+                    "address": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ListMembersResponse": {
+                "type": "object",
+                "properties": {
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Member"
+                        }
+                    },
+                    "paging": {
+                        "type": "object",
+                        "properties": {
+                            "first": {
+                                "type": "string"
+                            },
+                            "last": {
+                                "type": "string"
+                            },
+                            "next": {
+                                "type": "string"
+                            },
+                            "previous": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "ListMemberAddressResponse": {
+                "type": "object",
+                "properties": {
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Member"
+                        }
+                    }
+                }
+            },
+            "UpdateMailingList": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "A message indicating that the mailing list has been updated."
+                    },
+                    "list": {
+                        "type": "object",
+                        "properties": {
+                            "members_count": {
+                                "type": "integer",
+                                "description": "The number of members in the mailing list."
+                            },
+                            "description": {
+                                "type": "string",
+                                "description": "The updated description of the mailing list."
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "description": "The date and time when the mailing list was created."
+                            },
+                            "access_level": {
+                                "type": "string",
+                                "description": "The access level of the mailing list."
+                            },
+                            "address": {
+                                "type": "string",
+                                "description": "The email address of the mailing list."
+                            },
+                            "name": {
+                                "type": "string",
+                                "description": "The updated name of the mailing list."
+                            }
+                        }
+                    }
+                }
+            },
+            "DeleteListMember": {
+                "type": "object",
+                "properties": {
+                    "member": {
+                        "$ref": "#/components/schemas/Member"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "A message indicating the result of the delete operation"
+                    }
+                }
+            },
+            "ProviderDeviceEvents": {
+                "type": "object",
+                "properties": {
+                    "clicked": {
+                        "type": "integer",
+                        "description": "The number of clicks on links within the email."
+                    },
+                    "complained": {
+                        "type": "integer",
+                        "description": "The number of complaints (i.e. spam reports) received."
+                    },
+                    "opened": {
+                        "type": "integer",
+                        "description": "The number of times the email was opened."
+                    },
+                    "unique_clicked": {
+                        "type": "integer",
+                        "description": "The number of unique clicks on links within the email."
+                    },
+                    "unique_opened": {
+                        "type": "integer",
+                        "description": "The number of unique opens of the email."
+                    },
+                    "unsubscribed": {
+                        "type": "integer",
+                        "description": "The number of unsubscribes."
+                    }
+                }
+            },
+            "GetDeviceResponse": {
+                "type": "object",
+                "properties": {
+                    "device": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "#/components/schemas/ProviderDeviceEvents"
+                        },
+                        "description": "A hashmap of device types and their respective event counts."
+                    },
+                    "tag": {
+                        "type": "string",
+                        "description": "The tag for which the events are being retrieved."
+                    }
+                }
+            },
+            "ProviderCountryEvents": {
+                "type": "object",
+                "properties": {
+                    "accepted": {
+                        "type": "integer",
+                        "description": "The number of accepted emails."
+                    },
+                    "clicked": {
+                        "type": "integer",
+                        "description": "The number of clicks on links within the email."
+                    },
+                    "complained": {
+                        "type": "integer",
+                        "description": "The number of complaints (i.e. spam reports) received."
+                    },
+                    "delivered": {
+                        "type": "integer",
+                        "description": "The number of emails that were successfully delivered."
+                    },
+                    "opened": {
+                        "type": "integer",
+                        "description": "The number of times the email was opened."
+                    },
+                    "unique_clicked": {
+                        "type": "integer",
+                        "description": "The number of unique clicks on links within the email."
+                    },
+                    "unique_opened": {
+                        "type": "integer",
+                        "description": "The number of unique opens of the email."
+                    },
+                    "unsubscribed": {
+                        "type": "integer",
+                        "description": "The number of unsubscribes."
+                    }
+                }
+            },
+            "GetCountryResponse": {
+                "type": "object",
+                "properties": {
+                    "provider": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "#/components/schemas/ProviderCountryEvents"
+                        },
+                        "description": "A hashmap of provider domains and their respective event counts."
+                    },
+                    "tag": {
+                        "type": "string",
+                        "description": "The tag for which the events are being retrieved."
+                    }
+                }
+            },
+            "ProviderEvents": {
+                "type": "object",
+                "properties": {
+                    "accepted": {
+                        "type": "integer",
+                        "description": "The number of accepted emails."
+                    },
+                    "clicked": {
+                        "type": "integer",
+                        "description": "The number of clicks on links within the email."
+                    },
+                    "complained": {
+                        "type": "integer",
+                        "description": "The number of complaints (i.e. spam reports) received."
+                    },
+                    "delivered": {
+                        "type": "integer",
+                        "description": "The number of emails that were successfully delivered."
+                    },
+                    "opened": {
+                        "type": "integer",
+                        "description": "The number of times the email was opened."
+                    },
+                    "unique_clicked": {
+                        "type": "integer",
+                        "description": "The number of unique clicks on links within the email."
+                    },
+                    "unique_opened": {
+                        "type": "integer",
+                        "description": "The number of unique opens of the email."
+                    },
+                    "unsubscribed": {
+                        "type": "integer",
+                        "description": "The number of unsubscribes."
+                    }
+                }
+            },
+            "GetProvidersEvents": {
+                "type": "object",
+                "properties": {
+                    "provider": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "#/components/schemas/ProviderEvents"
+                        },
+                        "description": "A hashmap of provider domains and their respective event counts."
+                    },
+                    "tag": {
+                        "type": "string",
+                        "description": "The tag for which the events are being retrieved."
+                    }
+                }
+            },
+            "DeleteTag": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "GetDomainTags": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "tag": {
+                            "type": "string"
+                        },
+                        "description": {
+                            "type": "string"
+                        }
+                    },
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "first": {
+                                "type": "string"
+                            },
+                            "last": {
+                                "type": "string"
+                            },
+                            "next": {
+                                "type": "string"
+                            },
+                            "previous": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "DeleteCredentialsResponse": {
+                "type": "object",
+                "properties": {
+                    "message": {
                         "type": "string"
                     }
                 }
