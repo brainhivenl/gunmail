@@ -749,7 +749,11 @@
           "200": {
             "description": "Successful response",
             "content": {
-              "application/json": {}
+              "application/json": {
+                "schema":{
+                    "$ref": "#/components/schemas/GetConnectionResponse"
+                }
+              }
             }
           }
         }
@@ -4450,6 +4454,22 @@
           },
           "spec":{
             "type":"string"
+          }
+        }
+      },
+      "GetConnectionResponse": {
+        "type": "object",
+        "properties": {
+          "connection": {
+            "type": "object",
+            "properties": {
+              "require_tls": {
+                "type": "boolean"
+              },
+              "skip_verification": {
+                "type": "boolean"
+              }
+            }
           }
         }
       },
