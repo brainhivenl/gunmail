@@ -7554,7 +7554,7 @@ pub trait ClientMessagesExt {
     ///
     ///sends a message
     ///
-    ///Sends a `POST` request to `/{domain}/messages`
+    ///Sends a `POST` request to `/v3/{domain}/messages`
     ///
     ///```ignore
     /// let response = client.send_message()
@@ -8476,7 +8476,7 @@ pub mod builder {
             self
         }
 
-        ///Sends a `POST` request to `/{domain}/messages`
+        ///Sends a `POST` request to `/v3/{domain}/messages`
         pub async fn send(
             self,
         ) -> Result<ResponseValue<serde_json::Map<String, serde_json::Value>>, Error<()>> {
@@ -8494,7 +8494,7 @@ pub mod builder {
                 .and_then(std::convert::TryInto::<types::SendMessageBody>::try_into)
                 .map_err(Error::InvalidRequest)?;
             let __progenitor_url = format!(
-                "{}/{}/messages",
+                "{}/v3/{}/messages",
                 __progenitor_client.baseurl,
                 encode_path(&domain.to_string()),
             );

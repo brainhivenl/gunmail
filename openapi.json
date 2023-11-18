@@ -66,7 +66,7 @@
         }
     ],
     "paths": {
-        "/{domain}/messages": {
+        "/v3/{domain}/messages": {
             "post": {
                 "tags": [
                     "Messages"
